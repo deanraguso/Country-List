@@ -7,4 +7,4 @@
 - Countries data pulled through RestCountries API.
 
 ## Original Idea
-- Daniel Ask's core idea or having a country search application.
+- Daniel Ask's core idea or having a country search application

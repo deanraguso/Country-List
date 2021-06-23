@@ -15,7 +15,7 @@ export default class App extends Component {
 
     const query_group = ["rel_trg", "rel_par"]
 
-    let terms = [];
+    let terms = [query];
 
     for(let i=0 ; i<query_group.length ; i++){
 
@@ -41,7 +41,7 @@ export default class App extends Component {
     let results = [];
 
     terms.forEach(term => {
-      Object.assign(results,this.state.raw_data.filter(element => element.name.toLowerCase().includes( term ))); 
+      Object.assign(results,this.state.raw_data.filter(element => element.name.toLowerCase().includes( term.toLowerCase() ))); 
     })
 
     results = results.filter((obj, index, self)=> {
