@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import "./App.css"
+import Country from "./Country"
 
 export default class App extends Component {
 
@@ -27,17 +28,12 @@ export default class App extends Component {
         <h1>Country App</h1>
         <strong><p>Welcome {this.state.name}</p></strong>
         <input type="text" className="text-input" />
-        <button onClick={this.handleClick} >Click Me!</button>
-
-        <ol>
+        
+        <section className="all-countries">
           {data.map(country => {
-            return (
-            <li key={country.name}>
-              {country.name}
-            </li>
-              )
+            return <Country key={country.name} countryData={country}/>
           })}
-        </ol>
+        </section>
 
       </div>
     )

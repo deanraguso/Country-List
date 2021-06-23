@@ -12,3 +12,23 @@
   align-items: center;
   padding-top: 2%;
 }
+
+.all-countries {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.country {
+  width: 95%;
+  margin: 1%;
+  border: 2px black solid;
+  display: flex;
+  text-align: end;
+}
+
+img.flag {
+  float: left;
+  margin-right: 5%;
+}
