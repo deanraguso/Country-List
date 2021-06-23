@@ -11,13 +11,46 @@ export default class App extends Component {
     this.updateResults = this.updateResults.bind(this);
   }
 
-  updateResults() {
-    let query = document.querySelector("input").value;
-    if (query.length > 1){
-      query = query[0].toUpperCase() + query.slice(1);
+  async grabRelated(query){
+
+    const query_group = ["rel_trg", "rel_par"]
+
+    let terms = [];
+
+    for(let i=0 ; i<query_group.length ; i++){
+
+      let queries = await (await fetch("https://api.datamuse.com/words?" + query_group[i] + "=" + query)).json();
+    
+      queries = queries.map((q) => {
+        let {word} = q;
+        return word;
+      })
+
+      Object.assign(terms, queries);
+
     }
-    console.log(query)
-    this.setState({data: this.state.raw_data.filter(element => element.name.includes(query)) })
+
+    return terms;
+  }
+
+  async updateResults() {
+    let query = document.querySelector("input").value;
+    let terms =  await this.grabRelated(query);
+    terms.push(query);
+
+    let results = [];
+
+    terms.forEach(term => {
+      Object.assign(results,this.state.raw_data.filter(element => element.name.toLowerCase().includes( term ))); 
+    })
+
+    results = results.filter((obj, index, self)=> {
+      return index === self.findIndex((t) => {
+        return t.place === obj.place && t.name === obj.name;
+      })
+    })
+
+    this.setState({data: results});
   }
 
   async componentDidMount(){
@@ -27,7 +60,6 @@ export default class App extends Component {
   
   render() {
     const {data} = this.state;
-    console.log(this.state)
     return (
       <div className="country-app">
         <h1>Country App</h1>
