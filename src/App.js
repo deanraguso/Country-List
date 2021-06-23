@@ -13,7 +13,10 @@ export default class App extends Component {
 
   updateResults() {
     let query = document.querySelector("input").value;
-    query && query[0].toUpperCase();
+    if (query.length > 1){
+      query = query[0].toUpperCase() + query.slice(1);
+    }
+    console.log(query)
     this.setState({data: this.state.raw_data.filter(element => element.name.includes(query)) })
   }
 
