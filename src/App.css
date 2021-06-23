@@ -15,20 +15,21 @@
 
 .all-countries {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
   margin-top: 2%;
+  margin-left: 3%;
 }
 
 .country {
-  width: 95%;
+  width: 350px;
   margin: 1%;
-  border: 2px black solid;
+  border: 1px black solid;
   display: flex;
-  text-align: end;
 }
 
 img.flag {
   float: left;
   margin-right: 5%;
+  height: 70px;
 }
